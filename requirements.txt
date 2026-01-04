@@ -47,8 +47,8 @@ gast==0.7.0
 gitdb==4.0.12
 GitPython==3.1.45
 google-pasta==0.2.0
-googletrans==4.0.0rc1
 googletrans-py==4.0.0
+
 greenlet==3.3.0
 grpcio==1.76.0
 h11==0.16.0

@@ -11,21 +11,26 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-!s-q*$a50*55puwj0bzyr-#_)1=6j=^0r@uk)c3o3*$-yb4^h*"
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-!s-q*$a50*55puwj0bzyr-#_)1=6j=^0r@uk)c3o3*$-yb4^h*')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
+
 
 
 # Application definition
@@ -87,13 +92,14 @@ WSGI_APPLICATION = "users_microservice.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "MS_Users",
-        "USER": "postgres",
-        "PASSWORD": "admin1234",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "NAME": os.getenv('DB_NAME', 'MS_Users'),
+        "USER": os.getenv('DB_USER', 'postgres'),
+        "PASSWORD": os.getenv('DB_PASSWORD', 'admin1234'),
+        "HOST": os.getenv('DB_HOST', 'db'),
+        "PORT": os.getenv('DB_PORT', '5432'),
     }
 }
+
 
 
 
